@@ -78,7 +78,8 @@ window.plugin.mobileFoxUx.CSS = `
 
 	// scroll excesive content
 	.leaflet-control-layers {
-		max-height: calc(100vh - 23px - 5px - 1em);
+		// -bottom bar; -top margin; -extra margin
+		max-height: calc(100vh - 23px - 5px - 5px);
 		overflow-y: scroll;
 		box-sizing: border-box;
 	}
@@ -173,15 +174,16 @@ window.plugin.mobileFoxUx.setupCss = function() {
  */
 window.plugin.mobileFoxUx.setupLayers = function() {
 	// move layers outside fo the map element to enable scrolling
-	var el = document.querySelector('.leaflet-control-layers')
-	container = document.createElement('div');
+	var layers = document.querySelector('.leaflet-control-layers')
+	var container = document.createElement('div');
 	container.className = 'leaflet-top';	// seem to be required for toggle to work
 	container.style.cssText = 'right:5px; z-index: 2600';	// space for tap; above highlight selector
-	container.appendChild(el);
+	container.appendChild(layers);
 	document.body.appendChild(container);
 
 	// hide layers tooltip
-	el.querySelector('.leaflet-control-layers-toggle').title = '';
+	var toggle = layers.querySelector('.leaflet-control-layers-toggle');
+	toggle.title = '';
 }
 
 //window.plugin.mobileFoxUx.setup();
