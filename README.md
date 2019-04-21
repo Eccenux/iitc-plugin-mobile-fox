@@ -1,6 +1,6 @@
 # IITC plugin: Mobile Fox UX
 
-Plugin focused in making IITC better for mobile phones. This is for users of <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" target="_blank">Firefox mobile</a> which is a browser I highly recommend anyway for Android.
+Plugin focused on making IITC better for mobile phones. This is for users of <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" target="_blank">Firefox mobile</a> which is a browser I highly recommend anyway for Android.
 
 Installation
 ------------
@@ -17,6 +17,6 @@ Most of this tweaks probably won't make sense for the old IITC Mobile app. But i
 
 ### Other plugins ###
 
-Note I also have a different plugin which is focused in making FF mobile desktop view a bit more readable [enlarge-tools](https://github.com/Eccenux/iitc-plugin-enlarge-tools).
+Note I also have a different plugin which is focused on making FF mobile desktop view a bit more readable [enlarge-tools](https://github.com/Eccenux/iitc-plugin-enlarge-tools).
 
 See also: [my other IITC plugins](https://github.com/search?q=user%3AEccenux+iitc-plugin&type=Repositories).
