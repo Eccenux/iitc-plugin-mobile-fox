@@ -2,9 +2,9 @@
 // @id             iitc-plugin-mobile-fox@jonatkins
 // @name           IITC plugin: Mobile Fox UX
 // @category       Misc
-// @version        0.0.1
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
-// @description    [0.0.1] Plugin focused in making IITC better for mobile phones. This is for users of Firefox mobile.
+// @version        0.0.2
+// @description    [0.0.2] Plugin focused on making IITC better for mobile phones. This is for users of Firefox mobile.
 // @include        https://*.ingress.com/intel*
 // @include        http://*.ingress.com/intel*
 // @match          https://*.ingress.com/intel*
@@ -25,24 +25,70 @@ if(typeof window.plugin !== 'function') window.plugin = function() {};
 // use own namespace for plugin
 window.plugin.mobileFoxUx = function() {};
 
-window.plugin.mobileFoxUx.CHECKPOINT = 5*60*60; //5 hours per checkpoint
-window.plugin.mobileFoxUx.CYCLE = 7*25*60*60; //7 25 hour 'days' per cycle
-window.plugin.mobileFoxUx.CHECKPOINTS_COUNT = window.plugin.mobileFoxUx.CYCLE / window.plugin.mobileFoxUx.CHECKPOINT;
+/**
+ * CSS
+ */
+window.plugin.mobileFoxUx.CSS = `
+	/*
+	// tweak sidebar for 'margin-top: auto;' to work
+	#sidebar {
+		display: flex;
+		flex-direction: column;
+	}
+	*/
+	// align bottom bar
+	#sidebar .mobile-fox-nav-bar {
+		position: fixed;
+		bottom: 0;
+		background: #0e3d4e;
+	}
+	#sidebar .mobile-fox-nav-bar {
+		box-sizing: border-box;
+		padding: 3px;
+	}
+	// bottom bar links like toolbox links
+	#sidebar .mobile-fox-nav-bar > a {
+		box-sizing: border-box;
+		display: block;
+		text-align: center;
 
+		padding: 5px;
+		margin-top: 3px;
+		margin-bottom: 3px;
+		border: 2px outset #20A8B1;
+	}
+`.replace(/\n[ \t]*\/\/.+/g, ''); // remove inline comments
 
+/**
+ * Setup plugin (after IITC loaded).
+ */
 window.plugin.mobileFoxUx.setup  = function() {
+	// skip if not in mobile mode
+	// Note! This can be tested on desktop
+	if (!isSmartphone()) {
+		console.log('[mobileFoxUx]', 'Not in mobile mode.');
+		return;
+	}
+	console.log('[mobileFoxUx]', 'Mobile mode was detected. Running setup.');
 
-  // add a div to the sidebar, and basic style
-  $('#sidebar').append('<div id="score_cycle_times_display"></div>');
-  $('#score_cycle_times_display').css({'color':'#ffce00'});
+	// closing info pane
+	$('#sidebar').append(`<div class="mobile-fox-nav-bar">
+		<a title="Go back to map" onclick="show('map')">Close</a>
+	</div>`);
 
-
-  window.plugin.mobileFoxUx.update();
+	// add CSS
+	var el = document.createElement('style');
+	el.type = 'text/css';
+	el.media = 'screen';
+	el.appendChild(document.createTextNode(window.plugin.mobileFoxUx.CSS));
+	document.querySelector('head').appendChild(el);
 };
+
+//window.plugin.mobileFoxUx.setup();
 
 /**
 	Get time left information.
-*/
+*
 var formatDeltaTime = function(deltaT) {
 	var deltaInfo = '';
 	if (deltaT < 0) {
@@ -64,7 +110,7 @@ var formatDeltaTime = function(deltaT) {
 
 /**
  * Update CP and cycle times.
- */
+ *
 window.plugin.mobileFoxUx.update = function() {
 
 	// checkpoint and cycle start times are based on a simple modulus of the timestamp
@@ -113,7 +159,7 @@ window.plugin.mobileFoxUx.update = function() {
  * @param {Number} cycleStart Start time of the cycle to show.
  * @param {Number} cycleEnd End time of the cycle to show. Might be replaced with final date to be shown.
  * @param {Number} checkpointLength [const] Checkpoint lenght in ms.
- */
+ *
 window.plugin.mobileFoxUx.showCheckpointsDialog = function (checkpointTime, cycleStart, cycleEnd, checkpointLength) {
 	var now = new Date().getTime();
 	var maxCp = window.plugin.mobileFoxUx.CHECKPOINTS_COUNT;
@@ -134,7 +180,7 @@ window.plugin.mobileFoxUx.showCheckpointsDialog = function (checkpointTime, cycl
 		title: 'Remaining checkpoints'
 	});
 };
-
+/**/
 
 
 var setup =  window.plugin.mobileFoxUx.setup;
