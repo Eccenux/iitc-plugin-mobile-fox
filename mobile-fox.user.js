@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @id             iitc-plugin-mobile-fox@jonatkins
-// @name           IITC plugin: Mobile Fox
+// @name           IITC plugin: Mobile Fox UX
 // @category       Misc
 // @version        0.0.1
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion

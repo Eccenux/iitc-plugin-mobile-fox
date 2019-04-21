@@ -1,4 +1,4 @@
-# IITC plugin: Mobile Fox
+# IITC plugin: Mobile Fox UX
 
 Plugin focused in making IITC better for mobile phones. This is for users of <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" target="_blank">Firefox mobile</a> which is a browser I highly recommend anyway for Android.
 
