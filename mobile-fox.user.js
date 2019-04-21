@@ -175,7 +175,7 @@ window.plugin.mobileFoxUx.setupLayers = function() {
 	el = document.querySelector('.leaflet-control-layers')
 	container = document.createElement('div');
 	container.className = 'leaflet-top';	// seem to be required for toggle to work
-	container.style.cssText = 'right:1em; z-index: 2600';	// space for tap; above highlight selector
+	container.style.cssText = 'top: 1em; right:1em; z-index: 2600';	// space for tap; above highlight selector
 	container.appendChild(el);
 	document.body.appendChild(container);
 }
