@@ -172,12 +172,16 @@ window.plugin.mobileFoxUx.setupCss = function() {
  * Setup/fix layers chooser.
  */
 window.plugin.mobileFoxUx.setupLayers = function() {
-	el = document.querySelector('.leaflet-control-layers')
+	// move layers outside fo the map element to enable scrolling
+	var el = document.querySelector('.leaflet-control-layers')
 	container = document.createElement('div');
 	container.className = 'leaflet-top';	// seem to be required for toggle to work
-	container.style.cssText = 'top: 1em; right:1em; z-index: 2600';	// space for tap; above highlight selector
+	container.style.cssText = 'right:5px; z-index: 2600';	// space for tap; above highlight selector
 	container.appendChild(el);
 	document.body.appendChild(container);
+
+	// hide layers tooltip
+	el.querySelector('.leaflet-control-layers-toggle').title = '';
 }
 
 //window.plugin.mobileFoxUx.setup();
