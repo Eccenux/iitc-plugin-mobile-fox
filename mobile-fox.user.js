@@ -30,6 +30,10 @@ window.plugin.mobileFoxUx = function() {};
  * CSS
  */
 window.plugin.mobileFoxUx.CSS = `
+	//
+	// Portal/info sidebar
+	//
+
 	/*
 	// tweak sidebar for 'margin-top: auto;' to work
 	#sidebar {
@@ -68,6 +72,10 @@ window.plugin.mobileFoxUx.CSS = `
 		flex-wrap: wrap;
 	}
 
+	//
+	// Layers chooser
+	//
+
 	// scroll excesive content
 	.leaflet-control-layers {
 		max-height: calc(100vh - 23px - 5px - 1em);
@@ -75,7 +83,47 @@ window.plugin.mobileFoxUx.CSS = `
 		box-sizing: border-box;
 	}
 
-`.replace(/\n[ \t]*\/\/.+/g, ''); // remove inline comments
+	// reset styles
+	.leaflet-control-layers-base,
+	.leaflet-control-layers-overlays {
+		float: none;
+		max-height: none;
+		margin: 0;
+		padding: 0;
+		border-left-style: none;
+		overflow-y: visible;
+	}
+	// two column layout
+	.leaflet-control-layers-list {
+		columns: 2;
+		column-rule: 1px solid #ddd;
+	}
+	// switch to single column
+	@media (max-width: 460px) {
+		.leaflet-control-layers-list {
+			columns: 1;
+		}
+	}
+	
+	// element spacing better for fingers
+	.leaflet-control-layers-overlays {
+		padding: 1em 0;
+	}
+	.leaflet-control-layers label {
+		margin: 1em;
+		padding: .2em 0;
+	
+	}
+
+	// titles
+	.leaflet-control-layers-base:before {
+		content: 'Tiles:';
+	}
+	.leaflet-control-layers-overlays:before {
+		content: 'Layers:';
+	}
+
+`.replace(/\n[ \t]*\/\/.*/g, ''); // remove inline comments
 
 /**
  * Setup plugin (after IITC loaded).
