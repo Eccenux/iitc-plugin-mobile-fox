@@ -68,6 +68,13 @@ window.plugin.mobileFoxUx.CSS = `
 		flex-wrap: wrap;
 	}
 
+	// scroll excesive content
+	.leaflet-control-layers {
+		max-height: calc(100vh - 23px - 5px - 1em);
+		overflow-y: scroll;
+		box-sizing: border-box;
+	}
+
 `.replace(/\n[ \t]*\/\/.+/g, ''); // remove inline comments
 
 /**
@@ -75,7 +82,8 @@ window.plugin.mobileFoxUx.CSS = `
  */
 window.plugin.mobileFoxUx.setup = function() {
 	// skip if not in mobile mode
-	// Note! This can be tested on desktop
+	// Note! This can be tested on desktop FF by using responsive mode
+	// (only predefined Android phones like "Galaxy S5" seem to work)
 	if (!isSmartphone()) {
 		console.log('[mobileFoxUx]', 'Not in mobile mode.');
 		return;
@@ -83,17 +91,46 @@ window.plugin.mobileFoxUx.setup = function() {
 	console.log('[mobileFoxUx]', 'Mobile mode was detected. Running setup.');
 
 	// closing info pane
+	window.plugin.mobileFoxUx.setupSidebar();
+
+	// fix layers chooser
+	window.plugin.mobileFoxUx.setupLayers();
+
+	// add CSS
+	window.plugin.mobileFoxUx.setupCss();
+};
+
+/**
+ * Sidebar manipulation.
+ */
+window.plugin.mobileFoxUx.setupSidebar = function() {
 	$('#sidebar').append(`<div class="mobile-fox-nav-bar">
 		<a title="Go back to map" onclick="show('map')">Close</a>
 	</div>`);
+}
 
-	// add CSS
+/**
+ * Append CSS for the whole plugin.
+ */
+window.plugin.mobileFoxUx.setupCss = function() {
 	var el = document.createElement('style');
 	el.type = 'text/css';
 	el.media = 'screen';
 	el.appendChild(document.createTextNode(window.plugin.mobileFoxUx.CSS));
 	document.querySelector('head').appendChild(el);
-};
+}
+
+/**
+ * Setup/fix layers chooser.
+ */
+window.plugin.mobileFoxUx.setupLayers = function() {
+	el = document.querySelector('.leaflet-control-layers')
+	container = document.createElement('div');
+	container.className = 'leaflet-top';	// seem to be required for toggle to work
+	container.style.cssText = 'right:1em; z-index: 2600';	// space for tap; above highlight selector
+	container.appendChild(el);
+	document.body.appendChild(container);
+}
 
 //window.plugin.mobileFoxUx.setup();
 
