@@ -1,4 +1,5 @@
 ﻿// ==UserScript==
+// @author         Eccenux
 // @id             iitc-plugin-mobile-fox@jonatkins
 // @name           IITC plugin: Mobile Fox UX
 // @category       Misc
