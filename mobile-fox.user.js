@@ -58,12 +58,22 @@ window.plugin.mobileFoxUx.CSS = `
 		margin-bottom: 3px;
 		border: 2px outset #20A8B1;
 	}
+
+	// left side toolbar overflow handling
+	.leaflet-left.leaflet-top {
+		//margin-top: 20px;
+		display: flex;
+		flex-flow: column;
+		height: calc(100vh - 20px - 19px - 23px);
+		flex-wrap: wrap;
+	}
+
 `.replace(/\n[ \t]*\/\/.+/g, ''); // remove inline comments
 
 /**
  * Setup plugin (after IITC loaded).
  */
-window.plugin.mobileFoxUx.setup  = function() {
+window.plugin.mobileFoxUx.setup = function() {
 	// skip if not in mobile mode
 	// Note! This can be tested on desktop
 	if (!isSmartphone()) {
