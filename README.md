@@ -2,6 +2,22 @@
 
 Plugin focused on making IITC better for mobile phones. This is for users of <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" target="_blank">Firefox mobile</a> which is a browser I highly recommend anyway for Android.
 
+Features overview
+-----------------
+
+* Easy closing info panel (easy to reach close button).
+* Left side toolbar overflow handling (two or even 3 columns as shown on images below).
+* Better layer chooser:
+    * Better overflow handling (scrolls when needed).
+    * More natural switch between two and single column layout (as shown on images below).
+    * More spacing to easily choose tiles and layers on touch screens.
+
+Vertical view
+<img src="https://raw.githubusercontent.com/Eccenux/iitc-plugin-mobile-fox/master/screen.png" alt=" ">
+
+Horizontal view
+<img src="https://raw.githubusercontent.com/Eccenux/iitc-plugin-mobile-fox/master/screen-wide.png" alt=" ">
+
 Installation
 ------------
 
