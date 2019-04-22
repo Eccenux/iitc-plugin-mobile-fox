@@ -176,7 +176,7 @@ window.plugin.mobileFoxUx.setupCss = function() {
  * Setup/fix layers chooser.
  */
 window.plugin.mobileFoxUx.setupLayers = function() {
-	// move layers outside fo the map element to enable scrolling
+	// move layers outside of the map element (to enable scrolling)
 	var layers = document.querySelector('.leaflet-control-layers')
 	var container = document.createElement('div');
 	container.className = 'leaflet-top';	// seem to be required for toggle to work
