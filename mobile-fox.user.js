@@ -82,6 +82,9 @@ window.plugin.mobileFoxUx.CSS = `
 		max-height: calc(100vh - 23px - 5px - 5px);
 		overflow-y: scroll;
 		box-sizing: border-box;
+
+		// make sure there is gap on the left to close the chooser (tap outside)
+		max-width: calc(100vw - 2em);
 	}
 
 	// reset styles
