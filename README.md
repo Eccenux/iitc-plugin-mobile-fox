@@ -20,7 +20,7 @@ Vertical view
 
 Horizontal view
 
-<img src="https://raw.githubusercontent.com/Eccenux/iitc-plugin-mobile-fox/master/screen-wide.png" height="500" alt=" ">
+<img src="https://raw.githubusercontent.com/Eccenux/iitc-plugin-mobile-fox/master/screen-wide.png" alt=" ">
 
 Installation
 ------------
