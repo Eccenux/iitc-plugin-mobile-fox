@@ -2,6 +2,8 @@
 
 Plugin focused on making IITC better for mobile phones. This is for users of <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" target="_blank">Firefox mobile</a> which is a browser I highly recommend anyway for Android.
 
+Jump to: <a href="#Installation">Installation</a>
+
 Features overview
 -----------------
 
@@ -13,9 +15,11 @@ Features overview
     * More spacing to easily choose tiles and layers on touch screens.
 
 Vertical view
-<img src="https://raw.githubusercontent.com/Eccenux/iitc-plugin-mobile-fox/master/screen.png" alt=" ">
+
+<img src="https://raw.githubusercontent.com/Eccenux/iitc-plugin-mobile-fox/master/screen.png" width="540" alt=" ">
 
 Horizontal view
+
 <img src="https://raw.githubusercontent.com/Eccenux/iitc-plugin-mobile-fox/master/screen-wide.png" alt=" ">
 
 Installation
