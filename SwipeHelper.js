@@ -11,7 +11,17 @@ class SwipeHelper {
 	 */
 	constructor(container) {
 		// settings
+		/**
+		 * Minimum lenght the finger must travel for an event to be fired.
+		 */
 		this.minLength = 50;
+		/**
+		 * Allow multiple events within single move.
+		 * 
+		 * When true many events might be fired without lifting a finger.
+		 */
+		this.allowMultiple = true;
+
 		this.log = document.querySelector('#log');
 		if (!(container instanceof Element)) {
 			container = document;
@@ -42,15 +52,23 @@ class SwipeHelper {
 		}, false);
 	}
 
-	reset() {
-		this.startx = null;
-		this.starty = null;
+	/**
+	 * Reset/set starting point.
+	 * @param {Touch?} touch Touch object.
+	 */
+	reset(touch) {
+		if (typeof touch === 'object') {
+			this.startx = touch.clientX;
+			this.starty = touch.clientY;
+		} else {
+			this.startx = null;
+			this.starty = null;
+		}
 	}
 
 	handleStart(event) {
 		const touch = event.touches[0];
-		this.startx = touch.clientX;
-		this.starty = touch.clientY;
+		this.reset(touch);
 	}
 
 	handleMove(event) {
@@ -68,7 +86,7 @@ class SwipeHelper {
 
 		// make sure we covered the given distance
 		if (distancex < this.minLength && distancey < this.minLength) {
-			console.log('too close');
+			//console.log('too close');
 			return;
 		}
 
@@ -88,7 +106,10 @@ class SwipeHelper {
 		}
 
 		// reset
-		this.startx = null;
-		this.starty = null;
+		if (this.allowMultiple) {
+			this.reset(touch);
+		} else {
+			this.reset();
+		}
 	}
 }
