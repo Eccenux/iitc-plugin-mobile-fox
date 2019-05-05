@@ -4,8 +4,8 @@
 // @name           IITC plugin: Mobile Fox UX
 // @category       Misc
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
-// @version        0.0.5
-// @description    [0.0.5] Plugin focused on making IITC better for mobile phones. This is for users of Firefox mobile.
+// @version        0.1.0
+// @description    [0.1.0] Plugin focused on making IITC better for mobile phones. This is for users of Firefox mobile.
 // @include        https://*.ingress.com/intel*
 // @include        http://*.ingress.com/intel*
 // @match          https://*.ingress.com/intel*
@@ -30,6 +30,38 @@ window.plugin.mobileFoxUx = function() {};
  * CSS
  */
 window.plugin.mobileFoxUx.CSS = `
+	//
+	// Drawer (chat links etc)
+	//
+	#link-drawer {
+		// 100 - updatestatus
+		height: calc(100vh - 23px);
+		background: #0e3d4e;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2700;
+
+		box-sizing: border-box;
+		padding: .2em .5em;
+
+		// flex to easily make items start from bottom
+		display: flex;
+		flex-flow: column-reverse wrap;
+	}
+	// links similar to toolbox links
+	#link-drawer > a {
+		box-sizing: border-box;
+		display: block;
+		text-align: left;
+		padding: .5em .5em;
+		margin-top: .5em;
+		margin-bottom: .2em;
+
+		border: 2px outset #20A8B1;
+	}
+
 	//
 	// Portal/info sidebar
 	//
@@ -142,6 +174,9 @@ window.plugin.mobileFoxUx.setup = function() {
 	}
 	console.log('[mobileFoxUx]', 'Mobile mode was detected. Running setup.');
 
+	// drawer
+	window.plugin.mobileFoxUx.initDrawer();
+
 	// closing info pane
 	window.plugin.mobileFoxUx.setupSidebar();
 
@@ -151,6 +186,22 @@ window.plugin.mobileFoxUx.setup = function() {
 	// add CSS
 	window.plugin.mobileFoxUx.setupCss();
 };
+
+/**
+ * Drawer creation.
+ */
+window.plugin.mobileFoxUx.initDrawer = function() {
+	$('body').append(`<div id="link-drawer">
+		<a class="close-button" onclick="this.parentNode.style.display = 'none'">Close</a>
+
+		<a onclick="show('all')"    >Log: all</a>
+		<a onclick="show('faction')">Log: faction</a>
+		<a onclick="show('alerts')" >Log: alerts</a>
+
+		<a onclick="show('info')">Info</a>
+
+	</div>`);
+}
 
 /**
  * Sidebar manipulation.
@@ -190,70 +241,6 @@ window.plugin.mobileFoxUx.setupLayers = function() {
 }
 
 //window.plugin.mobileFoxUx.setup();
-
-/**
-	Get time left information.
-*
-var formatDeltaTime = function(deltaT) {
-	var deltaInfo = '';
-	if (deltaT < 0) {
-	} else if (deltaT < 1) {
-		deltaInfo = '&lt;1 min';
-	} else if (deltaT < 60) {
-		deltaInfo = Math.round(deltaT) + ' min';
-	} else if (deltaT < 2*60) {
-		var h = Math.floor(deltaT/60);
-		deltaInfo = h + 'h ';
-		deltaInfo += Math.round(deltaT - 60 * h) + ' min';
-	} else if (deltaT < 48*60) {
-		deltaInfo = '~' + Math.round(deltaT/60) + 'h';
-	} else {
-		deltaInfo = '~' + Math.round(deltaT/60/24) + ' days';
-	}
-	return deltaInfo;
-};
-
-/**
- * Update CP and cycle times.
- *
-window.plugin.mobileFoxUx.update = function() {
-
-	// checkpoint and cycle start times are based on a simple modulus of the timestamp
-	// no special epoch (other than the unix timestamp/javascript's 1970-01-01 00:00 UTC) is required
-
-	// when regional scoreboards were introduced, the first cycle would have started at 2014-01-15 10:00 UTC - but it was
-	// a few checkpoints in when scores were first added
-
-	var now = new Date().getTime();
-
-	var cycleStart = Math.floor(now / (window.plugin.mobileFoxUx.CYCLE*1000)) * (window.plugin.mobileFoxUx.CYCLE*1000);
-	var cycleEnd = cycleStart + window.plugin.mobileFoxUx.CYCLE*1000;
-
-	var checkpointLength = window.plugin.mobileFoxUx.CHECKPOINT*1000;
-	var checkpointStart = Math.floor(now / checkpointLength) * checkpointLength;
-	var checkpointEnd = checkpointStart + checkpointLength;
-
-	var html = '<table>'
-		+ plugin.mobileFoxUx.formatRow(now, 'Cycle s.', cycleStart)
-		+ plugin.mobileFoxUx.formatRow(now, 'Prev CP', checkpointStart)
-		+ plugin.mobileFoxUx.formatRow(now, 'Next CP', checkpointEnd, 'next-cp')
-		+ plugin.mobileFoxUx.formatRow(now, 'Cycle e.', cycleEnd)
-		+ '</table>'
-	;
-
-	$('#score_cycle_times_display').html(html);
-
-	$('#score_cycle_times_display .next-cp').click(function() {
-		plugin.mobileFoxUx.showCheckpointsDialog(checkpointEnd, cycleStart, cycleEnd, checkpointLength);
-	});
-	$('#score_cycle_times_display .next-cp .val')
-		.append(' <span style="cursor:pointer" title="Show remaining checkpoints">[...]</span>')
-	;
-
-	var closestDeltaT = (checkpointEnd - now) / 1000 / 60;	// that should be closest
-	setTimeout ( window.plugin.mobileFoxUx.update, updateInterval(closestDeltaT));
-};
-
 
 /**
  * Show remaining checkpoints.
