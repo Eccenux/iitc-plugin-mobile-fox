@@ -54,12 +54,33 @@ window.plugin.mobileFoxUx.CSS = `
 	#link-drawer > a {
 		box-sizing: border-box;
 		display: block;
-		text-align: left;
 		padding: .5em .5em;
 		margin-top: .5em;
 		margin-bottom: .2em;
 
+		text-align: left;
+
 		border: 2px outset #20A8B1;
+	}
+
+	// open drawer
+	.open-drawer-button {
+		background: #0e3d4e;
+
+		position: absolute;
+		left: 0;
+		z-index: 3100;
+		// bookmark button + bottom bar +  extra margin
+		bottom: calc(19px + 23px + 5px);
+
+		box-sizing: border-box;
+		display: block;
+		padding: 1em;
+
+		border-radius: 0 1em 1em 0;
+		border: 1px solid #20A8B1;
+
+		opacity: .6;
 	}
 
 	//
@@ -100,6 +121,7 @@ window.plugin.mobileFoxUx.CSS = `
 		//margin-top: 20px;
 		display: flex;
 		flex-flow: column;
+		// 100 - top - bookmark button - bottom bar
 		height: calc(100vh - 20px - 19px - 23px);
 		flex-wrap: wrap;
 	}
@@ -191,7 +213,7 @@ window.plugin.mobileFoxUx.setup = function() {
  * Drawer creation.
  */
 window.plugin.mobileFoxUx.initDrawer = function() {
-	$('body').append(`<div id="link-drawer">
+	$('body').append(`<div id="link-drawer" style="display:none">
 		<a class="close-button" onclick="this.parentNode.style.display = 'none'">Close</a>
 
 		<a onclick="show('all')"    >Log: all</a>
@@ -201,7 +223,9 @@ window.plugin.mobileFoxUx.initDrawer = function() {
 		<a onclick="show('map')">Map</a>
 		<a onclick="show('info')">Info</a>
 
-	</div>`);
+	</div>
+	<a class="open-drawer-button" onclick="$('#link-drawer').show()">D</a>
+	`);
 }
 
 /**
