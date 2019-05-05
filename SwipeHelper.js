@@ -22,6 +22,16 @@ class SwipeHelper {
 		 */
 		this.allowMultiple = true;
 
+		/**
+		 * If events should be captured from edges.
+		 */
+		this.fromEdge = true;
+
+		/**
+		 * Edge size in pixels.
+		 */
+		this.edgeSize = 5;
+
 		if (!(container instanceof Element)) {
 			container = document;
 		}
@@ -39,16 +49,33 @@ class SwipeHelper {
 	 * @param {String} type Swipe type (dominant direction).
 	 */
 	swipe(type) {
-		
 	}
 
 	initEvents(container) {
-		container.addEventListener('touchstart', (e) => {
-			this.handleStart(e);
-		}, false);
-		container.addEventListener('touchmove', (e) => {
-			this.handleMove(e);
-		}, false);
+		if (!this.fromEdge) {
+			container.addEventListener('touchstart', (e) => {
+				this.handleStart(e);
+			}, false);
+			container.addEventListener('touchmove', (e) => {
+				this.handleMove(e);
+			}, false);
+		} else {
+			container.addEventListener('touchstart', (e) => {
+				//console.log('touchstart', e);
+				this.handleStart(e);
+				e.preventDefault();
+				e.stopImmediatePropagation();
+				return true;
+			}, {passive: false, capture: true});
+			container.addEventListener('touchmove', (e) => {
+				//console.log('touchmove', e);
+				this.handleMove(e);
+				e.preventDefault();
+				e.stopImmediatePropagation();
+				return true;
+			}, {passive: false, capture: true});
+		}
+
 	}
 
 	/**
@@ -67,6 +94,7 @@ class SwipeHelper {
 
 	handleStart(event) {
 		const touch = event.touches[0];
+		console.log('touch', touch);
 		this.reset(touch);
 	}
 
