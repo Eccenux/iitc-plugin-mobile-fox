@@ -35,11 +35,11 @@ window.plugin.mobileFoxUx.CSS = `
 	//
 	#link-drawer {
 		// 100 - updatestatus
-		height: calc(100vh - 23px);
+		//height: calc(100vh - 23px);
 		background: #0e3d4e;
 
 		position: absolute;
-		top: 0;
+		bottom: 0;
 		left: 0;
 		z-index: 3100;
 
