@@ -22,7 +22,6 @@ class SwipeHelper {
 		 */
 		this.allowMultiple = true;
 
-		this.log = document.querySelector('#log');
 		if (!(container instanceof Element)) {
 			container = document;
 		}
@@ -40,7 +39,7 @@ class SwipeHelper {
 	 * @param {String} type Swipe type (dominant direction).
 	 */
 	swipe(type) {
-		this.log.innerHTML += `<p>${type}</p>`;
+		
 	}
 
 	initEvents(container) {

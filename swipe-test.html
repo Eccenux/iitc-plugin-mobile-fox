@@ -15,6 +15,11 @@
 <script src="SwipeHelper.js"></script>
 <script>
 const swipeHelper = new SwipeHelper();
+const log = document.querySelector('#log');
+swipeHelper.swipe = function(type) {
+	log.innerHTML += `<p>${type}</p>`;
+}
+
 </script>
 
 </body>
