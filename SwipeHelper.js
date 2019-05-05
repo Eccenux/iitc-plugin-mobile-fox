@@ -2,12 +2,11 @@
  * Helper class for detecting swipe events.
  * 
  * Note! Override `swipe` function to handle swipe events.
+ * Note! Call `start` when you are ready to handle events.
  */
 class SwipeHelper {
 	/**
 	 * Init.
-	 * 
-	 * @param {Element?} container Event container/base element. Defaults to document.
 	 */
 	constructor(container) {
 		// settings
@@ -32,17 +31,24 @@ class SwipeHelper {
 		 */
 		this.edgeSize = 10;
 
+		// reset
+		this.reset();
+	}
+
+	/**
+	 * Start handling events.
+	 * 
+	 * @param {Element?} container Event container/base element. Defaults to document.
+	 */
+	start(container) {
 		if (!(container instanceof Element)) {
 			container = document;
 		}
 
 		// events
 		this.initEvents(container);
-
-		// reset
-		this.reset();
 	}
-
+	
 	/**
 	 * Handle swipe event.
 	 * 
@@ -50,7 +56,7 @@ class SwipeHelper {
 	 */
 	swipe(type) {
 	}
-
+	
 	initEvents(container) {
 		if (!this.fromEdge) {
 			container.addEventListener('touchstart', (e) => {
@@ -61,10 +67,10 @@ class SwipeHelper {
 			}, false);
 		} else {
 			container.addEventListener('touchstart', (e) => {
-				//console.log('touchstart', e);
+				console.log('touchstart', e);
 				this.handleStart(e);
 				return true;
-			}, {passive: false, capture: false});
+			}, {passive: false, capture: true});
 			container.addEventListener('touchmove', (e) => {
 				//console.log('touchmove', e);
 				this.handleMove(e);
