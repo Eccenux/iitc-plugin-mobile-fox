@@ -30,7 +30,7 @@ class SwipeHelper {
 		/**
 		 * Edge size in pixels.
 		 */
-		this.edgeSize = 5;
+		this.edgeSize = 10;
 
 		if (!(container instanceof Element)) {
 			container = document;
@@ -63,17 +63,13 @@ class SwipeHelper {
 			container.addEventListener('touchstart', (e) => {
 				//console.log('touchstart', e);
 				this.handleStart(e);
-				e.preventDefault();
-				e.stopImmediatePropagation();
 				return true;
-			}, {passive: false, capture: true});
+			}, {passive: false, capture: false});
 			container.addEventListener('touchmove', (e) => {
 				//console.log('touchmove', e);
 				this.handleMove(e);
-				e.preventDefault();
-				e.stopImmediatePropagation();
 				return true;
-			}, {passive: false, capture: true});
+			}, {passive: false, capture: false});
 		}
 
 	}
@@ -94,8 +90,28 @@ class SwipeHelper {
 
 	handleStart(event) {
 		const touch = event.touches[0];
-		console.log('touch', touch);
-		this.reset(touch);
+		//console.log('touch', touch);
+		if (!this.fromEdge) {
+			this.reset(touch);
+		} else {
+			let onEdge = false;
+			if (touch.clientX < this.edgeSize) {
+				onEdge = 'left';
+			} else if (document.documentElement.clientWidth - touch.clientX < this.edgeSize) {
+				onEdge = 'right';
+			} else if (touch.clientY < this.edgeSize) {
+				onEdge = 'top';
+			} else if (document.documentElement.clientHeight - touch.clientY < this.edgeSize) {
+				onEdge = 'bottom';
+			}
+			if (onEdge) {
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				this.reset(touch);
+			} else {
+				this.reset();
+			}
+		}
 	}
 
 	handleMove(event) {
