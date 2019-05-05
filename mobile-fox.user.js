@@ -41,7 +41,7 @@ window.plugin.mobileFoxUx.CSS = `
 		position: absolute;
 		top: 0;
 		left: 0;
-		z-index: 2700;
+		z-index: 3100;
 
 		box-sizing: border-box;
 		padding: .2em .5em;
@@ -198,6 +198,7 @@ window.plugin.mobileFoxUx.initDrawer = function() {
 		<a onclick="show('faction')">Log: faction</a>
 		<a onclick="show('alerts')" >Log: alerts</a>
 
+		<a onclick="show('map')">Map</a>
 		<a onclick="show('info')">Info</a>
 
 	</div>`);
