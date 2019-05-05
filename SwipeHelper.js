@@ -67,6 +67,8 @@ class SwipeHelper {
 			}, false);
 		} else {
 			container.addEventListener('touchstart', (e) => {
+				// Note! Do NOT remove this log. It is required for Firefox!
+				// See bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1549220
 				console.log('touchstart', e);
 				this.handleStart(e);
 				return true;

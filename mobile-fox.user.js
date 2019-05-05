@@ -213,9 +213,16 @@ window.plugin.mobileFoxUx.setup = function() {
  * Drawer creation.
  */
 window.plugin.mobileFoxUx.initDrawer = function() {
-	let swipeHelper = new SwipeHelper();
-	swipeHelper.swipe = function(type) {
-		console.log('[swipeHelper]', type);
+	window.plugin.mobileFoxUx.createDrawer();
+	window.plugin.mobileFoxUx.initDrawerEvents();
+}
+
+window.plugin.mobileFoxUx.initDrawerEvents = function() {
+	// open (and close) from edge
+	// closing should also work when you open and change your mind
+	let swipeEdgeHelper = new SwipeHelper();
+	swipeEdgeHelper.swipe = function(type) {
+		console.log('[swipeEdgeHelper]', type);
 		switch (type) {
 			case 'left':
 				$('#link-drawer').hide();
@@ -225,7 +232,23 @@ window.plugin.mobileFoxUx.initDrawer = function() {
 			break;
 		}
 	}
+	swipeEdgeHelper.start();
 
+	// close from anywhere in the opened drawer
+	let swipeOutHelper = new SwipeHelper();
+	swipeOutHelper.fromEdge = false;
+	swipeOutHelper.swipe = function(type) {
+		console.log('[swipeOutHelper]', type);
+		switch (type) {
+			case 'left':
+				$('#link-drawer').hide();
+			break;
+		}
+	}
+	swipeOutHelper.start(document.querySelector('#link-drawer'));
+}
+
+window.plugin.mobileFoxUx.createDrawer = function() {
 	$('body').append(`<div id="link-drawer" style="display:none">
 		<a class="close-button" onclick="this.parentNode.style.display = 'none'">Close</a>
 
@@ -320,12 +343,11 @@ var setup =  window.plugin.mobileFoxUx.setup;
  * Helper class for detecting swipe events.
  * 
  * Note! Override `swipe` function to handle swipe events.
+ * Note! Call `start` when you are ready to handle events.
  */
 class SwipeHelper {
 	/**
 	 * Init.
-	 * 
-	 * @param {Element?} container Event container/base element. Defaults to document.
 	 */
 	constructor(container) {
 		// settings
@@ -340,34 +362,65 @@ class SwipeHelper {
 		 */
 		this.allowMultiple = true;
 
-		//this.log = document.querySelector('#log');
-		if (!(container instanceof Element)) {
-			container = document;
-		}
+		/**
+		 * If events should be captured from edges.
+		 */
+		this.fromEdge = true;
 
-		// events
-		this.initEvents(container);
+		/**
+		 * Edge size in pixels.
+		 */
+		this.edgeSize = 10;
 
 		// reset
 		this.reset();
 	}
 
 	/**
+	 * Start handling events.
+	 * 
+	 * @param {Element?} container Event container/base element. Defaults to document.
+	 */
+	start(container) {
+		if (!(container instanceof Element)) {
+			container = document;
+		}
+
+		// events
+		this.initEvents(container);
+	}
+	
+	/**
 	 * Handle swipe event.
 	 * 
 	 * @param {String} type Swipe type (dominant direction).
 	 */
 	swipe(type) {
-		//this.log.innerHTML += `<p>${type}</p>`;
 	}
-
+	
 	initEvents(container) {
-		container.addEventListener('touchstart', (e) => {
-			this.handleStart(e);
-		}, false);
-		container.addEventListener('touchmove', (e) => {
-			this.handleMove(e);
-		}, false);
+		if (!this.fromEdge) {
+			container.addEventListener('touchstart', (e) => {
+				this.handleStart(e);
+			}, false);
+			container.addEventListener('touchmove', (e) => {
+				this.handleMove(e);
+			}, false);
+		} else {
+			container.addEventListener('touchstart', (e) => {
+				// Note! Do NOT remove this log. It is required for Firefox!
+				// See bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1549220
+				console.log('touchstart', e);
+				this.handleStart(e);
+				return true;
+			}, {passive: false, capture: true});
+			container.addEventListener('touchmove', (e) => {
+				//console.log('touchmove', e);
+				this.handleMove(e);
+				return true;
+			}, {passive: false, capture: false});
+		}
+
 	}
 
 	/**
@@ -386,7 +439,28 @@ class SwipeHelper {
 
 	handleStart(event) {
 		const touch = event.touches[0];
-		this.reset(touch);
+		//console.log('touch', touch);
+		if (!this.fromEdge) {
+			this.reset(touch);
+		} else {
+			let onEdge = false;
+			if (touch.clientX < this.edgeSize) {
+				onEdge = 'left';
+			} else if (document.documentElement.clientWidth - touch.clientX < this.edgeSize) {
+				onEdge = 'right';
+			} else if (touch.clientY < this.edgeSize) {
+				onEdge = 'top';
+			} else if (document.documentElement.clientHeight - touch.clientY < this.edgeSize) {
+				onEdge = 'bottom';
+			}
+			if (onEdge) {
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				this.reset(touch);
+			} else {
+				this.reset();
+			}
+		}
 	}
 
 	handleMove(event) {
@@ -431,6 +505,7 @@ class SwipeHelper {
 		}
 	}
 }
+// SwipeHelper END
 
 // PLUGIN END //////////////////////////////////////////////////////////
 
