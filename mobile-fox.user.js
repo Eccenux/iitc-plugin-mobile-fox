@@ -19,7 +19,9 @@
 // @downloadURL    https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.user.js
 // ==/UserScript==
 
-function wrapper(plugin_info) {
+// original wrapper
+//function wrapper(plugin_info) {
+
 // ensure plugin framework is there, even if iitc is not yet loaded
 if(typeof window.plugin !== 'function') window.plugin = function() {};
 
@@ -203,6 +205,11 @@ window.plugin.mobileFoxUx.setup = function() {
 		if (window.plugin.bookmarks) {
 			window.plugin.mobileFoxUx.addPane("plugin-bookmarks", "Bookmarks");
 		}
+		if (window.plugin.missions) {
+			$.extend(window.plugin.missions, missionsOverwrite);
+			window.plugin.missions.createMissionsPane();
+			window.plugin.mobileFoxUx.addPane('plugin-missions', 'Missions');
+		}
 	}, 900)
 
 	// closing info pane
@@ -224,6 +231,41 @@ window.plugin.mobileFoxUx.setup = function() {
 		}
 	});
 };
+
+let missionsOverwrite = {
+	showMissionListDialog : function (missions) {
+		console.log('[missionsOverwrite]', 'showMissionListDialog');
+
+		let contentElement = this.renderMissionList(missions);
+		this.mobilePaneContainer.appendChild(contentElement);
+	},
+
+	onPaneChanged : function (pane) {
+		console.log('[missionsOverwrite]', 'onPaneChanged', this);
+
+		if(pane == 'plugin-missions') {
+			document.body.appendChild(this.mobilePane);
+			$(this.mobilePaneContainer).empty();
+			this.openTopMissions();
+		} else if(this.mobilePane.parentNode) {
+			this.mobilePane.parentNode.removeChild(this.mobilePane);
+		}
+	
+	},
+	
+	createMissionsPane : function () {
+		console.log('[missionsOverwrite]', 'createMissionsPane', this);
+
+		this.mobilePane = document.createElement('div');
+		this.mobilePane.className = 'plugin-mission-pane';
+	
+		this.mobilePaneContainer = document.createElement('div');
+		this.mobilePane.appendChild(this.mobilePaneContainer);
+		addHook('paneChanged', (pane) => {
+			this.onPaneChanged(pane);
+		});
+	},
+}
 
 /**
  * Add pane/panel.
@@ -371,7 +413,7 @@ window.plugin.mobileFoxUx.showCheckpointsDialog = function (checkpointTime, cycl
 /**/
 
 
-var setup =  window.plugin.mobileFoxUx.setup;
+//var setup =  window.plugin.mobileFoxUx.setup;
 
 /**
  * Helper class for detecting swipe events.
@@ -546,6 +588,9 @@ class SwipeHelper {
 
 // PLUGIN END //////////////////////////////////////////////////////////
 
+// only small wrapper to allow debugging
+function wrapper(plugin_info) {
+	var setup =  window.plugin.mobileFoxUx.setup;
 
 setup.info = plugin_info; //add the script info data to the function as a property
 if(!window.bootPlugins) window.bootPlugins = [];
