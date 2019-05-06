@@ -41,7 +41,7 @@ window.plugin.mobileFoxUx.CSS = `
 		position: absolute;
 		bottom: 0;
 		left: 0;
-		z-index: 3101;
+		z-index: 10101;
 
 		box-sizing: border-box;
 		padding: .2em .5em;
@@ -69,7 +69,7 @@ window.plugin.mobileFoxUx.CSS = `
 		display: block;
 
 		position: absolute;
-		z-index: 3100;
+		z-index: 10100;
 		// bookmark button + bottom bar +  extra margin
 		bottom: calc(19px + 23px + 5px);
 		left: -5px;
@@ -198,6 +198,12 @@ window.plugin.mobileFoxUx.setup = function() {
 
 	// drawer
 	window.plugin.mobileFoxUx.initDrawer();
+	// plugins in drawer
+	setTimeout(function(){
+		if (window.plugin.bookmarks) {
+			window.plugin.mobileFoxUx.addPane("plugin-bookmarks", "Bookmarks");
+		}
+	}, 900)
 
 	// closing info pane
 	window.plugin.mobileFoxUx.setupSidebar();
@@ -218,6 +224,21 @@ window.plugin.mobileFoxUx.setup = function() {
 		}
 	});
 };
+
+/**
+ * Add pane/panel.
+ * 
+ * Similar to `android.addPane`, but instead of resource name you can add a class to the link.
+ * 
+ * Note some plugins are detected and added automatically.
+ * If you have a plugin not listed just run this function from your plugin.
+ */
+window.plugin.mobileFoxUx.addPane = function(id, name, className) {
+	if (typeof className !== 'string') {
+		className = 'plugin-link';
+	}
+	$('#link-drawer').append(`<a class="${className}" onclick="show('${id}')">${name}</a>`);
+}
 
 /**
  * Drawer creation.
