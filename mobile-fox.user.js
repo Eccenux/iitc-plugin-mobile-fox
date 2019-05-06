@@ -70,7 +70,7 @@ window.plugin.mobileFoxUx.CSS = `
 
 		background: #0e3d4e;
 		// this is an outline for 2nd column elements
-		box-shadow: 0 0 0 8px #0e3d4e;
+		box-shadow: 0 0 0 9px #0e3d4e;
 	}
 
 	// open drawer
