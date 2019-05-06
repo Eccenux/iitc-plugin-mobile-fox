@@ -1,7 +1,30 @@
 /**
- * Originals from:
- * IITC_Ingress_intel_map_total_conversion\total-conversion-build.user.notes.js
+	Originals from:
+	IITC_Ingress_intel_map_total_conversion\total-conversion-build.user.notes.js
+*/
+
+//
+// Dialog
+// jUI API: http://api.jqueryui.com/1.8/dialog/
+//
+
+/* The global ID of onscreen dialogs.
+ * Starts at 0.
  */
+window.DIALOG_ID = 0;
+
+/* All onscreen dialogs, keyed by their ID.
+ */
+window.DIALOGS = {};
+
+/* The number of dialogs on screen.
+ */
+window.DIALOG_COUNT = 0;
+
+/* The dialog that has focus.
+ */
+window.DIALOG_FOCUS = null;
+
 
 //
 // Adding panels (example)
