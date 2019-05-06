@@ -207,6 +207,16 @@ window.plugin.mobileFoxUx.setup = function() {
 
 	// add CSS
 	window.plugin.mobileFoxUx.setupCss();
+
+	// panel switching tweaks
+	window.addHook('paneChanged', function(panelId) {
+		if (panelId === 'map') {
+			$('body > .leaflet-top').show();
+		} else {
+			// required for `setupLayers` (and possibly other moved outside of the map element)
+			$('body > .leaflet-top').hide();
+		}
+	});
 };
 
 /**
