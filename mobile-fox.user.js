@@ -280,14 +280,12 @@ let missionsOverwrite = {
 		dialog({
 			id: 'plugin-mission-details-' + id,
 			title: mission.title,
-			height: 'auto',
 			html: content,
+			height: Math.ceil(document.documentElement.clientHeight * 0.9),
 			width: '95vw',
 			closeCallback: function() {
 				me.removeMissionLayers(markers);
 			},
-			collapseCallback: this.collapseFix,
-			expandCallback: this.collapseFix,
 			focus: function() {
 				me.highlightMissionLayers(markers);
 			}
