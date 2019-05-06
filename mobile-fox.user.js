@@ -38,6 +38,7 @@ window.plugin.mobileFoxUx.CSS = `
 	#link-drawer {
 		// 100 - updatestatus
 		//height: calc(100vh - 23px);
+		max-height: 100vh;
 		background: #0e3d4e;
 
 		position: absolute;
@@ -46,7 +47,9 @@ window.plugin.mobileFoxUx.CSS = `
 		z-index: 10101;
 
 		box-sizing: border-box;
-		padding: .2em .5em;
+		//padding: .2em .5em;
+		padding-left: 6px;
+		padding-bottom: 6px;
 
 		// flex to easily make items start from bottom
 		display: flex;
@@ -57,12 +60,17 @@ window.plugin.mobileFoxUx.CSS = `
 		box-sizing: border-box;
 		display: block;
 		padding: .5em .5em;
-		margin-top: .5em;
-		margin-bottom: .2em;
-
+		margin: 6px;
+		margin-bottom: 3px;
+		margin-left: 3px;
+	
 		text-align: left;
 
 		border: 2px outset #20A8B1;
+
+		background: #0e3d4e;
+		// this is an outline for 2nd column elements
+		box-shadow: 0 0 0 8px #0e3d4e;
 	}
 
 	// open drawer
