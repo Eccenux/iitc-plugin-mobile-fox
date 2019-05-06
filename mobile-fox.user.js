@@ -41,7 +41,7 @@ window.plugin.mobileFoxUx.CSS = `
 		position: absolute;
 		bottom: 0;
 		left: 0;
-		z-index: 3100;
+		z-index: 3101;
 
 		box-sizing: border-box;
 		padding: .2em .5em;
@@ -65,20 +65,20 @@ window.plugin.mobileFoxUx.CSS = `
 
 	// open drawer
 	.open-drawer-button {
-		background: #0e3d4e;
+		box-sizing: border-box;
+		display: block;
 
 		position: absolute;
-		left: 0;
 		z-index: 3100;
 		// bookmark button + bottom bar +  extra margin
 		bottom: calc(19px + 23px + 5px);
+		left: -5px;
+		padding: 5px 8px 5px 0;
+		font-size: 25px;
 
-		box-sizing: border-box;
-		display: block;
-		padding: 1em;
-
-		border-radius: 0 1em 1em 0;
-		border: 1px solid #20A8B1;
+		background: #0e3d4e;
+		border-radius: 0 10px 10px 0;
+		//border: 1px solid #20A8B1;
 
 		opacity: .6;
 	}
@@ -263,7 +263,7 @@ window.plugin.mobileFoxUx.createDrawer = function() {
 		<a onclick="show('info')">Info</a>
 
 	</div>
-	//<a class="open-drawer-button" onclick="$('#link-drawer').show()">D</a>
+	<a class="open-drawer-button" onclick="$('#link-drawer').show()">☰</a>
 	`.replace(/\n[ \t]*\/\/.*/g, '')	// remove inline comments
 	);
 }
