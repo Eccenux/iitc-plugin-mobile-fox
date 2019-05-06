@@ -113,8 +113,11 @@ class SwipeHelper {
 				onEdge = 'bottom';
 			}
 			if (onEdge) {
-				event.preventDefault();
-				event.stopImmediatePropagation();
+				if (this.edgeCapture instanceof Array && this.edgeCapture.indexOf(onEdge) >= 0) {
+					event.preventDefault();
+					event.stopImmediatePropagation();
+					console.log('[SwipeHelper] touch captured');
+				}
 				this.reset(touch);
 			} else {
 				this.reset();

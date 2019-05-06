@@ -221,6 +221,9 @@ window.plugin.mobileFoxUx.initDrawerEvents = function() {
 	// open (and close) from edge
 	// closing should also work when you open and change your mind
 	let swipeEdgeHelper = new SwipeHelper();
+	//swipeEdgeHelper.edgeSize = 40;	// about the same as a single column of tools (leaflet-left).
+	swipeEdgeHelper.edgeSize = 20;
+	swipeEdgeHelper.edgeCapture = ['left'];
 	swipeEdgeHelper.swipe = function(type) {
 		console.log('[swipeEdgeHelper]', type);
 		switch (type) {
@@ -454,8 +457,11 @@ class SwipeHelper {
 				onEdge = 'bottom';
 			}
 			if (onEdge) {
-				event.preventDefault();
-				event.stopImmediatePropagation();
+				if (this.edgeCapture instanceof Array && this.edgeCapture.indexOf(onEdge) >= 0) {
+					event.preventDefault();
+					event.stopImmediatePropagation();
+					console.log('[SwipeHelper] touch captured');
+				}
 				this.reset(touch);
 			} else {
 				this.reset();
