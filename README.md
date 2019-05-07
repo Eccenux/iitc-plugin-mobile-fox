@@ -58,7 +58,7 @@ Horizontal view
 Installation
 ------------
 
-Note! This is an alfa version (very experimental). Probably not ready for general public use.
+This is a RC version (pre-release). Should work fine but YMMV.
 
 Assuming you already have IITC just &rarr; **[install the script](https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.user.js)**.
 
