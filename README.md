@@ -19,7 +19,7 @@ Features overview
 	* Opened from drawer and loads missions immediately.
 	* Missions pane is fixed to flow nicely.
 	* Mission dialog should fit on your mobile screen.
-	* Zoom to mission automatically collapses the mission to show the map.
+	* Zoom to mission button automatically collapses the mission to show the map.
 
 ### Drawer ###
 
