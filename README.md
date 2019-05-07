@@ -4,6 +4,8 @@ Plugin focused on making IITC better for mobile phones. This is for users of <a 
 
 Jump to: <a href="#Installation">Installation</a>.
 
+*(pl)* Skocz do: <a href="#InstalacjaPL">InstalacjaPL</a>. 
+
 Features overview
 -----------------
 
@@ -62,6 +64,14 @@ This is a RC version (pre-release). Should work fine but YMMV.
 
 Assuming you already have IITC just &rarr; **[install the script](https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.user.js)**.
 
+The plugin can be installed as any other IITC plugin. But to make sure you have everything let's follow this steps:
+
+1. Install [Firefox for Android](https://play.google.com/store/apps/details?id=org.mozilla.firefox) (if don't have it yet).
+2. On your phone install [TamperMonkey for Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/) (if don't have it yet).
+3. On your phone install [IITC](https://iitc.me/desktop/).
+4. Once you have IITC just &rarr; **[install the script](https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.user.js)**.
+
+BTW you might wan to install some other Firefox addons like [uBlock Origin](https://addons.mozilla.org/pl/firefox/addon/ublock-origin/) for example. It's an ad/script blocker which makes website more usable and load much faster :-).
 
 ### Other browsers ###
 
@@ -72,4 +82,18 @@ Most of this tweaks probably won't make sense for the old IITC Mobile app. But i
 
 Note I also have a different plugin which is focused on making FF mobile desktop view a bit more readable [enlarge-tools](https://github.com/Eccenux/iitc-plugin-enlarge-tools).
 
-See also: [my other IITC plugins](https://github.com/search?q=user%3AEccenux+iitc-plugin&type=Repositories).
+See also: [my other IITC plugins](https://github.com/search?q=user%3AEccenux+iitc-plugin&type=Repositories). You might want to install my 
+
+InstalacjaPL
+------------
+
+Plugin instaluje się jak każdy inny w Tampermonkey. Ale żeby mieć pewność, że masz wszystko...
+
+1. Zainstaluj [Firefox dla Android](https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=pl) (jeśli jeszcze nie masz).
+2. Zainstaluj na telefonie [TamperMonkey dla Firefox](https://addons.mozilla.org/pl/firefox/addon/tampermonkey/) (jeśli jeszcze nie masz).
+3. Zainstaluj na telefonie [IITC](https://iitc.me/desktop/).
+4. Jak już masz IITC &rarr; **[zainstaluj skrypt](https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.user.js)**.
+
+Przy okazji polecam inne rozszerzenia do Firefoksa. Np. [uBlock Origin](https://addons.mozilla.org/pl/firefox/addon/ublock-origin/), który znacząco przyśpiesza strony :-).
+
+A wracając do Ingressa polecam: [moje inne pluginy IITC](https://github.com/search?q=user%3AEccenux+iitc-plugin&type=Repositories). W szczególności draw-tools w wersji mobilnej mogą się przydać :-).
