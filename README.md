@@ -82,7 +82,7 @@ Most of this tweaks probably won't make sense for the old IITC Mobile app. But i
 
 Note I also have a different plugin which is focused on making FF mobile desktop view a bit more readable [enlarge-tools](https://github.com/Eccenux/iitc-plugin-enlarge-tools).
 
-See also: [my other IITC plugins](https://github.com/search?q=user%3AEccenux+iitc-plugin&type=Repositories). You might want to install my 
+See also: [my other IITC plugins](https://github.com/search?q=user%3AEccenux+iitc-plugin&type=Repositories). You might want to install my draw-tools fork which is better suited for touch screens.
 
 InstalacjaPL
 ------------
