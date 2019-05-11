@@ -4,8 +4,8 @@
 // @name           IITC plugin: Mobile Fox UX
 // @category       Misc
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
-// @version        0.1.2
-// @description    [0.1.2] Plugin focused on making IITC better for mobile phones. This is for users of Firefox mobile.
+// @version        0.1.3
+// @description    [0.1.3] Plugin focused on making IITC better for mobile phones. This is for users of Firefox mobile.
 // @include        https://*.ingress.com/intel*
 // @include        http://*.ingress.com/intel*
 // @match          https://*.ingress.com/intel*
@@ -339,6 +339,7 @@ window.plugin.mobileFoxUx.initDrawerEvents = function() {
 	//swipeEdgeHelper.edgeSize = 40;	// about the same as a single column of tools (leaflet-left).
 	swipeEdgeHelper.edgeSize = 20;
 	swipeEdgeHelper.edgeCapture = ['left'];
+	swipeEdgeHelper.captureExceptionElements = ['a', 'button', 'input'];
 	swipeEdgeHelper.swipe = function(type) {
 		console.log('[swipeEdgeHelper]', type);
 		switch (type) {
@@ -572,10 +573,17 @@ class SwipeHelper {
 				onEdge = 'bottom';
 			}
 			if (onEdge) {
+				// capture event only on specifc edges
 				if (this.edgeCapture instanceof Array && this.edgeCapture.indexOf(onEdge) >= 0) {
-					event.preventDefault();
-					event.stopImmediatePropagation();
-					console.log('[SwipeHelper] touch captured');
+					// don't capture for some target elements
+					let targetElement = event.target.nodeName.toLowerCase();
+					if (this.captureExceptionElements instanceof Array && this.captureExceptionElements.indexOf(targetElement) >= 0) {
+						console.log('[SwipeHelper] touch NOT captured for target: ', targetElement);
+					} else {
+						event.preventDefault();
+						event.stopImmediatePropagation();
+						console.log('[SwipeHelper] touch captured');
+					}
 				}
 				this.reset(touch);
 			} else {
