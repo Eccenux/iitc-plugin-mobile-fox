@@ -217,6 +217,12 @@ window.plugin.mobileFoxUx.setup = function() {
 			$.extend(window.plugin.missions, missionsOverwrite);
 			window.plugin.missions.createMissionsPane();
 			window.plugin.mobileFoxUx.addPane('plugin-missions', 'Missions');
+			// fix action in toolbox
+			try {
+				document.querySelector('#toolbox a[onclick^="plugin.missions.open"]').setAttribute('onclick', `show('plugin-missions');`);
+			} catch (e) {
+				console.warn(e);
+			}
 		}
 	}, 900)
 
