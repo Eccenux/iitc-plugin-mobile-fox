@@ -14,6 +14,8 @@
 // @include        http://*.ingress.com/mission/*
 // @match          https://*.ingress.com/mission/*
 // @match          http://*.ingress.com/mission/*
+// @include        https://intel.ingress.com/*
+// @match          https://intel.ingress.com/*
 // @grant          none
 // @updateURL      https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.meta.js
 // @downloadURL    https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.user.js
