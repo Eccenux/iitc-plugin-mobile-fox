@@ -4,8 +4,8 @@
 // @name           IITC plugin: Mobile Fox UX
 // @category       Misc
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
-// @version        0.1.6
-// @description    [0.1.6] Plugin focused on making IITC better for mobile phones. This is for users of Firefox mobile.
+// @version        0.1.7
+// @description    [0.1.7] Plugin focused on making IITC better for mobile phones. This is for users of Firefox mobile.
 // @include        https://*.ingress.com/intel*
 // @include        http://*.ingress.com/intel*
 // @match          https://*.ingress.com/intel*
@@ -71,6 +71,9 @@ window.plugin.mobileFoxUx.CSS = `
 		background: #0e3d4e;
 		// this is an outline for 2nd column elements
 		box-shadow: 0 0 0 9px #0e3d4e;
+	}
+	#link-drawer > a:hover {
+		text-decoration: none;
 	}
 
 	// open drawer
@@ -378,14 +381,14 @@ window.plugin.mobileFoxUx.initDrawerEvents = function() {
 
 window.plugin.mobileFoxUx.createDrawer = function() {
 	$('body').append(`<div id="link-drawer" style="display:none">
-		<a class="close-button" onclick="this.parentNode.style.display = 'none'">Close</a>
+		<a class="close-button" onclick="this.parentNode.style.display = 'none'">❎ Close</a>
 
 		<a onclick="show('all')"    >Log: all</a>
 		<a onclick="show('faction')">Log: faction</a>
 		<a onclick="show('alerts')" >Log: alerts</a>
 
-		<a onclick="show('map')">Map</a>
-		<a onclick="show('info')">Info</a>
+		<a onclick="show('map')">🗺️ Map</a>
+		<a onclick="show('info')">ℹ️ Info</a>
 
 	</div>
 	<a class="open-drawer-button" onclick="$('#link-drawer').show()">☰</a>
