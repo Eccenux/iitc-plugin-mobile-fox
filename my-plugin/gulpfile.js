@@ -1,4 +1,3 @@
-/* global exports */
 var ms = require('gulp-monkeyscript');
 var msProject = ms.createProject("monkeyscript.json");
 
