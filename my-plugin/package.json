@@ -1,14 +1,19 @@
 {
-  "name": "my-plugin",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "gulp": "^4.0.2"
-  }
+	"name": "my-plugin",
+	"version": "0.1.8",
+	"description": "[0.1.8] Plugin focused on making IITC better for mobile phones. Mostly for users of Firefox for Android.",
+	"author": "Eccenux",
+	"license": "MIT",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ashleygwilliams/my_package.git"
+	},
+	"devDependencies": {
+		"eslint": "^6.8.0",
+		"gulp": "^4.0.2"
+	}
 }
