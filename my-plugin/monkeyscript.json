@@ -1,0 +1,11 @@
+{
+    "$schema": "./node_modules/gulp-monkeyscript/schema.json",
+    "name": "My Awesome Userscript!",
+    "version": "1.0.0",
+    "author": "Tom",
+    "description": "This userscript adds new functionality!",
+    "match": [
+        "http://www.website.com/page1/",
+        "http://www.website-alter.com/*"
+    ]
+}
