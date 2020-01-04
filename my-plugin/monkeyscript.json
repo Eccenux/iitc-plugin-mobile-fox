@@ -1,9 +1,9 @@
 {
     "$schema": "./node_modules/gulp-monkeyscript/schema.json",
     "author": "[to fill]",
-    "id": "iitc-plugin-mobile-fox@jonatkins",
     "name": "[to fill]",
     "category": "Misc",
+    "id": "iitc-plugin-mobile-fox@jonatkins",
     "namespace": "https://github.com/jonatkins/ingress-intel-total-conversion",
     "version": "1.0.0",
     "description": "This userscript adds new functionality!",
