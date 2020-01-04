@@ -1,11 +1,18 @@
 {
     "$schema": "./node_modules/gulp-monkeyscript/schema.json",
-    "name": "My Awesome Userscript!",
+    "author": "[to fill]",
+    "id": "iitc-plugin-mobile-fox@jonatkins",
+    "name": "[to fill]",
+    "category": "Misc",
+    "namespace": "https://github.com/jonatkins/ingress-intel-total-conversion",
     "version": "1.0.0",
-    "author": "Tom",
     "description": "This userscript adds new functionality!",
     "match": [
-        "http://www.website.com/page1/",
-        "http://www.website-alter.com/*"
+        "https://*.ingress.com/intel*",
+        "http://*.ingress.com/intel*",
+        "https://*.ingress.com/mission/*",
+        "http://*.ingress.com/mission/*",
+        "https://intel.ingress.com/*",
+        "https://intel.ingress.com/*"
     ]
 }
