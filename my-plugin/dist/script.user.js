@@ -1,17 +1,17 @@
 // ==UserScript==
-// @author			[to fill]
-// @name			[to fill]
-// @id		iitc-plugin-mobile-fox@jonatkins
-// @category		Misc
-// @namespace		https://github.com/jonatkins/ingress-intel-total-conversion
-// @version			1.0.0
-// @description		This userscript adds new functionality!
-// @match			https://*.ingress.com/intel*
-// @match			http://*.ingress.com/intel*
-// @match			https://*.ingress.com/mission/*
-// @match			http://*.ingress.com/mission/*
-// @match			https://intel.ingress.com/*
-// @match			https://intel.ingress.com/*
+// @author      [to fill]
+// @name        [to fill]
+// @id          iitc-plugin-mobile-fox@jonatkins
+// @category    Misc
+// @namespace   https://github.com/jonatkins/ingress-intel-total-conversion
+// @version     1.0.0
+// @description This userscript adds new functionality!
+// @match       https://*.ingress.com/intel*
+// @match       http://*.ingress.com/intel*
+// @match       https://*.ingress.com/mission/*
+// @match       http://*.ingress.com/mission/*
+// @match       https://intel.ingress.com/*
+// @match       https://intel.ingress.com/*
 // ==/UserScript==
 
 // original wrapper
