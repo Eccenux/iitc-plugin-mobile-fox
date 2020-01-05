@@ -5,6 +5,22 @@
 	"author": "Eccenux",
 	"license": "MIT",
 	"main": "index.js",
+	"monkeyscript": {
+		"meta": {
+			"$schema": "./node_modules/gulp-monkeyscript/schema.json",
+			"category": "Misc",
+			"id": "iitc-plugin-mobile-fox@jonatkins",
+			"namespace": "https://github.com/jonatkins/ingress-intel-total-conversion",
+			"match": [
+				"https://*.ingress.com/intel*",
+				"http://*.ingress.com/intel*",
+				"https://*.ingress.com/mission/*",
+				"http://*.ingress.com/mission/*",
+				"https://intel.ingress.com/*",
+				"https://intel.ingress.com/*"
+			]
+		}
+	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
