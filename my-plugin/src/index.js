@@ -10,8 +10,8 @@ window.plugin.mobileFoxUx = function() {};
 /**
  * CSS
  */
-window.plugin.mobileFoxUx.CSS = `
-`.replace(/\n[ \t]*\/\/.*/g, ''); // remove inline comments
+// _css will be provided via `gulp` build.
+window.plugin.mobileFoxUx.CSS = _css;
 
 /**
  * Setup plugin (after IITC loaded).

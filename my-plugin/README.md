@@ -53,3 +53,4 @@ You might get "EPERM: operation not permitted" on Windows. This seem to be a pro
 cd my-plugin
 npm install --no-optional
 ```
+This should only be need the first time you install (if at all).

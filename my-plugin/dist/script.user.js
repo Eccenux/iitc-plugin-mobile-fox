@@ -14,6 +14,132 @@
 // @match       https://intel.ingress.com/*
 // ==/UserScript==
 
+var _css = String.raw`
+/**
+	Drawer (chat links etc)
+*/
+#link-drawer {
+  max-height: 100vh;
+  background: #0e3d4e;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10101;
+  box-sizing: border-box;
+  padding-left: 6px;
+  padding-bottom: 6px;
+  display: flex;
+  flex-flow: column-reverse wrap;
+}
+#link-drawer > a {
+  box-sizing: border-box;
+  display: block;
+  padding: 0.5em 0.5em;
+  margin: 6px;
+  margin-bottom: 3px;
+  margin-left: 3px;
+  text-align: left;
+  border: 2px outset #20A8B1;
+  background: #0e3d4e;
+  box-shadow: 0 0 0 9px #0e3d4e;
+}
+#link-drawer > a:hover {
+  text-decoration: none;
+}
+.open-drawer-button {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  z-index: 10100;
+  bottom: calc(19px + 23px + 5px);
+  left: -5px;
+  padding: 5px 8px 5px 0;
+  font-size: 25px;
+  background: #0e3d4e;
+  border-radius: 0 10px 10px 0;
+  opacity: 0.6;
+}
+/**
+	Portal info view (sidebar in desktop mode)
+*/
+/*
+// tweak sidebar for 'margin-top: auto;' to work
+#sidebar {
+	display: flex;
+	flex-direction: column;
+}
+*/
+#sidebar .mobile-fox-nav-bar {
+  position: fixed;
+  bottom: 0;
+  background: #0e3d4e;
+}
+#sidebar .mobile-fox-nav-bar {
+  box-sizing: border-box;
+  padding: 3px;
+}
+#sidebar .mobile-fox-nav-bar > a {
+  box-sizing: border-box;
+  display: block;
+  text-align: center;
+  padding: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border: 2px outset #20A8B1;
+}
+.leaflet-left.leaflet-top {
+  display: flex;
+  flex-flow: column;
+  height: calc(100vh - 20px - 19px - 23px);
+  flex-wrap: wrap;
+}
+/**
+	Layers chooser
+*/
+.leaflet-control-layers {
+  max-height: calc(100vh - 23px - 5px - 5px);
+  overflow-y: scroll;
+  box-sizing: border-box;
+  max-width: calc(100vw - 2em);
+}
+.leaflet-control-layers-base,
+.leaflet-control-layers-overlays {
+  float: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border-left-style: none;
+  overflow-y: visible;
+}
+.leaflet-control-layers-list {
+  columns: 2;
+  column-rule: 1px solid #ddd;
+}
+@media (max-width: 460px) {
+  .leaflet-control-layers-list {
+    columns: 1;
+  }
+}
+.leaflet-control-layers-overlays {
+  padding: 1em 0;
+}
+.leaflet-control-layers label {
+  margin: 1em;
+  padding: 0.2em 0;
+}
+.leaflet-control-layers-base:before {
+  content: 'Tiles:';
+}
+.leaflet-control-layers-overlays:before {
+  content: 'Layers:';
+}
+.leaflet-control-layers-list > .layers-close-button {
+  float: right;
+  color: black;
+}
+
+`;
+
 // original wrapper
 //function wrapper(plugin_info) {
 
@@ -26,175 +152,8 @@ window.plugin.mobileFoxUx = function() {};
 /**
  * CSS
  */
-window.plugin.mobileFoxUx.CSS = `
-	//
-	// Drawer (chat links etc)
-	//
-	#link-drawer {
-		// 100 - updatestatus
-		//height: calc(100vh - 23px);
-		max-height: 100vh;
-		background: #0e3d4e;
-
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		z-index: 10101;
-
-		box-sizing: border-box;
-		//padding: .2em .5em;
-		padding-left: 6px;
-		padding-bottom: 6px;
-
-		// flex to easily make items start from bottom
-		display: flex;
-		flex-flow: column-reverse wrap;
-	}
-	// links similar to toolbox links
-	#link-drawer > a {
-		box-sizing: border-box;
-		display: block;
-		padding: .5em .5em;
-		margin: 6px;
-		margin-bottom: 3px;
-		margin-left: 3px;
-	
-		text-align: left;
-
-		border: 2px outset #20A8B1;
-
-		background: #0e3d4e;
-		// this is an outline for 2nd column elements
-		box-shadow: 0 0 0 9px #0e3d4e;
-	}
-	#link-drawer > a:hover {
-		text-decoration: none;
-	}
-
-	// open drawer
-	.open-drawer-button {
-		box-sizing: border-box;
-		display: block;
-
-		position: absolute;
-		z-index: 10100;
-		// bookmark button + bottom bar +  extra margin
-		bottom: calc(19px + 23px + 5px);
-		left: -5px;
-		padding: 5px 8px 5px 0;
-		font-size: 25px;
-
-		background: #0e3d4e;
-		border-radius: 0 10px 10px 0;
-		//border: 1px solid #20A8B1;
-
-		opacity: .6;
-	}
-
-	//
-	// Portal/info sidebar
-	//
-
-	/*
-	// tweak sidebar for 'margin-top: auto;' to work
-	#sidebar {
-		display: flex;
-		flex-direction: column;
-	}
-	*/
-	// align bottom bar
-	#sidebar .mobile-fox-nav-bar {
-		position: fixed;
-		bottom: 0;
-		background: #0e3d4e;
-	}
-	#sidebar .mobile-fox-nav-bar {
-		box-sizing: border-box;
-		padding: 3px;
-	}
-	// bottom bar links like toolbox links
-	#sidebar .mobile-fox-nav-bar > a {
-		box-sizing: border-box;
-		display: block;
-		text-align: center;
-
-		padding: 5px;
-		margin-top: 3px;
-		margin-bottom: 3px;
-		border: 2px outset #20A8B1;
-	}
-
-	// left side toolbar overflow handling
-	.leaflet-left.leaflet-top {
-		//margin-top: 20px;
-		display: flex;
-		flex-flow: column;
-		// 100 - top - bookmark button - bottom bar
-		height: calc(100vh - 20px - 19px - 23px);
-		flex-wrap: wrap;
-	}
-
-	//
-	// Layers chooser
-	//
-
-	// scroll excesive content
-	.leaflet-control-layers {
-		// -bottom bar; -top margin; -extra margin
-		max-height: calc(100vh - 23px - 5px - 5px);
-		overflow-y: scroll;
-		box-sizing: border-box;
-
-		// make sure there is gap on the left to close the chooser (tap outside)
-		max-width: calc(100vw - 2em);
-	}
-
-	// reset styles
-	.leaflet-control-layers-base,
-	.leaflet-control-layers-overlays {
-		float: none;
-		max-height: none;
-		margin: 0;
-		padding: 0;
-		border-left-style: none;
-		overflow-y: visible;
-	}
-	// two column layout
-	.leaflet-control-layers-list {
-		columns: 2;
-		column-rule: 1px solid #ddd;
-	}
-	// switch to single column
-	@media (max-width: 460px) {
-		.leaflet-control-layers-list {
-			columns: 1;
-		}
-	}
-
-	// element spacing better for fingers
-	.leaflet-control-layers-overlays {
-		padding: 1em 0;
-	}
-	.leaflet-control-layers label {
-		margin: 1em;
-		padding: .2em 0;
-	
-	}
-
-	// titles
-	.leaflet-control-layers-base:before {
-		content: 'Tiles:';
-	}
-	.leaflet-control-layers-overlays:before {
-		content: 'Layers:';
-	}
-	// close button
-	.leaflet-control-layers-list > .layers-close-button {
-		float: right;
-		color: black;
-	}
-
-`.replace(/\n[ \t]*\/\/.*/g, ''); // remove inline comments
+// _css will be provided via `gulp` build.
+window.plugin.mobileFoxUx.CSS = _css;
 
 /**
  * Setup plugin (after IITC loaded).
