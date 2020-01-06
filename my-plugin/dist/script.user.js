@@ -14,7 +14,7 @@
 // @match       https://intel.ingress.com/*
 // ==/UserScript==
 
-var _css = String.raw`
+var _css = /*css*/ `
 /**
 	Drawer (chat links etc)
 */
