@@ -1,16 +1,8 @@
 var ms = require('gulp-monkeyscript');
-var msProject = ms.createProject("monkeyscript.json");
+var msProject = ms.createProject("package.json");
 
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-
-/**
- * TODO: copy info from package to monkey script.
- * add update/download URL from package JSON?
- * make sure id.catory is supported.
- */
-function packageToMonkey() {
-}
 
 /**
  * Default gulp task.

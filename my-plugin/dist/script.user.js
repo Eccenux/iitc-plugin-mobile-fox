@@ -1,11 +1,11 @@
 // ==UserScript==
-// @author      [to fill]
-// @name        [to fill]
+// @author      Eccenux
+// @name        IITC plugin: Mobile Fox UX
 // @id          iitc-plugin-mobile-fox@jonatkins
 // @category    Misc
 // @namespace   https://github.com/jonatkins/ingress-intel-total-conversion
-// @version     1.0.0
-// @description This userscript adds new functionality!
+// @version     0.1.8
+// @description [0.1.8] Plugin focused on making IITC better for mobile phones. Mostly for users of Firefox for Android.
 // @match       https://*.ingress.com/intel*
 // @match       http://*.ingress.com/intel*
 // @match       https://*.ingress.com/mission/*

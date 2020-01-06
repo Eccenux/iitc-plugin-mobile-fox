@@ -1,5 +1,5 @@
 {
-	"name": "my-plugin",
+	"name": "iitc-plugin-mobile-fox",
 	"version": "0.1.8",
 	"description": "[0.1.8] Plugin focused on making IITC better for mobile phones. Mostly for users of Firefox for Android.",
 	"author": "Eccenux",
@@ -7,7 +7,7 @@
 	"main": "index.js",
 	"monkeyscript": {
 		"meta": {
-			"$schema": "./node_modules/gulp-monkeyscript/schema.json",
+			"name": "IITC plugin: Mobile Fox UX",
 			"category": "Misc",
 			"id": "iitc-plugin-mobile-fox@jonatkins",
 			"namespace": "https://github.com/jonatkins/ingress-intel-total-conversion",
@@ -32,6 +32,6 @@
 		"eslint": "^6.8.0",
 		"gulp": "^4.0.2",
 		"gulp-concat": "^2.6.1",
-		"gulp-monkeyscript": "git+https://github.com/Eccenux/gulp-monkeyscript.git"
+		"gulp-monkeyscript": "file:../../gulp-monkeyscript"
 	}
 }
