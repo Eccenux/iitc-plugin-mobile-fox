@@ -1,0 +1,31 @@
+/**
+	Portal info view (sidebar in desktop mode)
+*/
+/*
+// tweak sidebar for 'margin-top: auto;' to work
+#sidebar {
+	display: flex;
+	flex-direction: column;
+}
+*/
+// align bottom bar
+#sidebar .mobile-fox-nav-bar {
+	position: fixed;
+	bottom: 0;
+	background: #0e3d4e;
+}
+#sidebar .mobile-fox-nav-bar {
+	box-sizing: border-box;
+	padding: 3px;
+}
+// bottom bar links like toolbox links
+#sidebar .mobile-fox-nav-bar > a {
+	box-sizing: border-box;
+	display: block;
+	text-align: center;
+
+	padding: 5px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	border: 2px outset #20A8B1;
+}

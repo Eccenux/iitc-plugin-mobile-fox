@@ -1,0 +1,14 @@
+@import "./drawer.less";
+@import "./portal-info.less";
+
+// left side toolbar overflow handling
+.leaflet-left.leaflet-top {
+	//margin-top: 20px;
+	display: flex;
+	flex-flow: column;
+	// 100 - top - bookmark button - bottom bar
+	height: calc(100vh - 20px - 19px - 23px);
+	flex-wrap: wrap;
+}
+
+@import "./layers-chooser.less";
