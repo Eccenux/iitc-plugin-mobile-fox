@@ -48,9 +48,9 @@ Known problems
 --------------
 
 ### Installation problems ###
-You might get "EPERM: operation not permitted" on Windows. This seem to be a problem with `fsevents` module. If the problem occurs you can try installing dependencies like this:
+You might get "EPERM: operation not permitted" on Windows. This seem to be a problem with `fsevents` module. If the problem occurs, you can try installing dependencies like this:
 ```
 cd my-plugin
 npm install --no-optional
 ```
-This should only be need the first time you install (if at all).
+This should only be needed the first time you install (if at all).
