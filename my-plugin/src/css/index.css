@@ -95,6 +95,9 @@
   overflow-y: visible;
 }
 .leaflet-control-layers-list {
+  height: auto !important;
+}
+.leaflet-control-layers-list {
   columns: 2;
   column-rule: 1px solid #ddd;
 }

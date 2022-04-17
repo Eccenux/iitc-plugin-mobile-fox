@@ -4,8 +4,8 @@
 // @id          iitc-plugin-mobile-fox@jonatkins
 // @category    Misc
 // @namespace   https://github.com/jonatkins/ingress-intel-total-conversion
-// @version     0.2.0
-// @description [0.2.0] Plugin focused on making IITC better for mobile phones. Mostly for users of Firefox for Android.
+// @version     0.2.1
+// @description [0.2.1] Plugin focused on making IITC better for mobile phones. Mostly for users of Firefox for Android.
 // @updateURL   https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.meta.js
 // @downloadURL https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.user.js
 // @match       https://*.ingress.com/intel*
@@ -113,6 +113,9 @@ var _css = /*css*/ `
   padding: 0;
   border-left-style: none;
   overflow-y: visible;
+}
+.leaflet-control-layers-list {
+  height: auto !important;
 }
 .leaflet-control-layers-list {
   columns: 2;

@@ -1,7 +1,7 @@
 {
 	"name": "iitc-plugin-mobile-fox",
-	"version": "0.2.0",
-	"description": "[0.2.0] Plugin focused on making IITC better for mobile phones. Mostly for users of Firefox for Android.",
+	"version": "0.2.1",
+	"description": "[0.2.1] Plugin focused on making IITC better for mobile phones. Mostly for users of Firefox for Android.",
 	"author": "Eccenux",
 	"license": "MIT",
 	"main": "index.js",
