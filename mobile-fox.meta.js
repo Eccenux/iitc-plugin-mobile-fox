@@ -3,7 +3,7 @@
 // @name        IITC plugin: Mobile Fox UX
 // @id          iitc-plugin-mobile-fox@jonatkins
 // @category    Misc
-// @namespace   pl.enux.iitc
+// @namespace   https://github.com/jonatkins/ingress-intel-total-conversion
 // @version     0.2.0
 // @description [0.2.0] Plugin focused on making IITC better for mobile phones. Mostly for users of Firefox for Android.
 // @match       https://*.ingress.com/intel*

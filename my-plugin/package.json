@@ -11,7 +11,7 @@
 			"name": "IITC plugin: Mobile Fox UX",
 			"category": "Misc",
 			"id": "iitc-plugin-mobile-fox@jonatkins",
-			"namespace": "pl.enux.iitc",
+			"namespace": "https://github.com/jonatkins/ingress-intel-total-conversion",
 			"updateUrl": "https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.meta.js",
 			"downloadUrl": "https://github.com/Eccenux/iitc-plugin-mobile-fox/raw/master/mobile-fox.user.js",
 			"grant": [
