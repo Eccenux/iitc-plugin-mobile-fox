@@ -1,9 +1,10 @@
 var ms = require('gulp-monkeyscript');
-var msProject = ms.createProject("package.json");
+var msProject = ms.createFullProject("package.json");
 
 var gulp = require('gulp');
 var gulpless = require('gulp-less');
 var concat = require('gulp-concat');
+var source = require('vinyl-source-stream');
 
 /**
  * LESS compile/merge task.
@@ -23,11 +24,20 @@ function lessTask(cb) {
  * @param {Function} cb Some callback.
  */
 function buildTask(cb) {
-     
+	// user.js
 	gulp.src("src/**/*.js")
-		.pipe(concat("script.user.js"))
-		.pipe(msProject()) // append Tampermonkey header
-		.pipe(gulp.dest("dist/"));
+		.pipe(concat("mobile-fox.user.js"))
+		.pipe(msProject.main()) // add monkeyscript header
+		.pipe(gulp.dest("../"))
+	;
+
+	// meta.js
+	var stream = source("mobile-fox.meta.js");
+	stream.end('');
+	stream
+		.pipe(msProject.meta()) // add monkeyscript header
+		.pipe(gulp.dest("../"))
+	;
     
 	cb();
 }
