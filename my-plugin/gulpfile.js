@@ -8,15 +8,11 @@ var source = require('vinyl-source-stream');
 
 /**
  * LESS compile/merge task.
- * @param {Function} cb Some callback.
  */
-function lessTask(cb) {
-	
-	gulp.src("src/less/index.less")
+function lessTask() {
+	return gulp.src("src/less/index.less")
 		.pipe(gulpless())
 		.pipe(gulp.dest("src/css/"));
-    
-	cb();
 }
 
 /**
