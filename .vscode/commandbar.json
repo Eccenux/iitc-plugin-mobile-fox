@@ -1,0 +1,43 @@
+// Requires `gsppvo.vscode-commandbar`.
+// Also: in settings (UI), `files.associations`, add `commandbar.json: jsonc` (json with comments).
+{
+	"skipTerminateQuickPick": true,
+	"skipSwitchToOutput": false,
+	"skipErrorMessage": true,
+	"commands": [
+		{
+			"text": "Gulp build",
+			"color": "lightgreen",
+			"commandType": "palette",
+			"command": "workbench.action.tasks.runTask|gulp build",
+			"priority": 0
+		},
+		{
+			"text": "Install modules",
+			"tooltip": "npm install --no-optional",
+			"color": "lightgreen",
+			"commandType": "palette",
+			"command": "workbench.action.tasks.runTask|modules install perm",
+			"priority": 0
+		},
+		
+		{
+			"text": "☯",
+			"tooltip": "ESLint: Fix All",
+			"color": "yellow",
+			"commandType": "palette",
+			"command": "eslint.executeAutofix",
+			"alignment": "right",
+			"priority": 3
+		},
+		{
+			"text": "🌼",
+			"tooltip": "Beautify selection",
+			"color": "white",
+			"commandType": "palette",
+			"command": "HookyQR.beautify",
+			"alignment": "right",
+			"priority": 3
+		}
+	]
+}

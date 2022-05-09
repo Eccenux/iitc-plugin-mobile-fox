@@ -1,0 +1,28 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "gulp build",
+			"type": "shell",
+			"command": "gulp",
+			"options": {
+				"cwd": "${workspaceFolder}/my-plugin"
+			},
+			"group": "build",
+			"problemMatcher": [],
+		},
+		// safe install for Windows
+		{
+			"label": "modules install perm",
+			"type": "shell",
+			"command": "npm install --no-optional",
+			"options": {
+				"cwd": "${workspaceFolder}/my-plugin"
+			},
+			"group": "build",
+			"problemMatcher": [],
+		},
+	]
+}
