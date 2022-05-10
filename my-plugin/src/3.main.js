@@ -1,4 +1,5 @@
-﻿/**
+﻿/* global SwipeHelper, layerChooser */
+/**
  * Add pane/panel.
  * 
  * Similar to `android.addPane`, but instead of resource name you can add a class to the link.
@@ -34,10 +35,10 @@ window.plugin.mobileFoxUx.initDrawerEvents = function() {
 		switch (type) {
 			case 'left':
 				$('#link-drawer').hide();
-			break;
+				break;
 			case 'right':
 				$('#link-drawer').show();
-			break;
+				break;
 		}
 	}
 	swipeEdgeHelper.start();
@@ -50,7 +51,7 @@ window.plugin.mobileFoxUx.initDrawerEvents = function() {
 		switch (type) {
 			case 'left':
 				$('#link-drawer').hide();
-			break;
+				break;
 		}
 	}
 	swipeOutHelper.start(document.querySelector('#link-drawer'));

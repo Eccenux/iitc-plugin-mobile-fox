@@ -161,6 +161,7 @@ window.plugin.mobileFoxUx = function() {};
 // _css will be provided via `gulp` build.
 window.plugin.mobileFoxUx.CSS = _css;
 
+/* global missionsOverwrite */
 /**
  * Setup plugin (after IITC loaded).
  */
@@ -217,6 +218,7 @@ window.plugin.mobileFoxUx.setup = function() {
 	});
 };
 
+/* global SwipeHelper, layerChooser */
 /**
  * Add pane/panel.
  * 
@@ -253,10 +255,10 @@ window.plugin.mobileFoxUx.initDrawerEvents = function() {
 		switch (type) {
 			case 'left':
 				$('#link-drawer').hide();
-			break;
+				break;
 			case 'right':
 				$('#link-drawer').show();
-			break;
+				break;
 		}
 	}
 	swipeEdgeHelper.start();
@@ -269,7 +271,7 @@ window.plugin.mobileFoxUx.initDrawerEvents = function() {
 		switch (type) {
 			case 'left':
 				$('#link-drawer').hide();
-			break;
+				break;
 		}
 	}
 	swipeOutHelper.start(document.querySelector('#link-drawer'));

@@ -7,13 +7,20 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+		"$": true,
+		"jQuery": true,
+		"isSmartphone": true,
+		
+		"_css": true,
     },
     "parserOptions": {
         "ecmaVersion": 2018
     },
     "rules": {
-		"indent": ["error", "tab"]
+		"indent": [
+			"error",
+			"tab",
+			{ "SwitchCase": 1 }
+		],
     }
 };

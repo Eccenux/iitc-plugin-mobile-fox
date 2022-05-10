@@ -1,4 +1,5 @@
-﻿/**
+﻿/* global missionsOverwrite */
+/**
  * Setup plugin (after IITC loaded).
  */
 window.plugin.mobileFoxUx.setup = function() {
