@@ -8,5 +8,14 @@
 		"**/node_modules": true, // this excludes all folders named "node_modules"
 		
 		"**/*.lnk": true,
+	},
+	"search.exclude": {
+		// project specific
+		"*.user.js": true,
+
+		// defaults
+		"**/node_modules": true,
+		"**/bower_components": true,
+		"**/*.code-search": true
 	}
 }
