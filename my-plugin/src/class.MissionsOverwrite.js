@@ -1,7 +1,7 @@
 ﻿/**
  * Missions plugin overwrites.
  * 
- * Move it to separate plugin?
+ * @todo Move this to separate plugin?
  */
 let missionsOverwrite = {
 	showMissionListDialog : function (missions) {
@@ -60,6 +60,9 @@ let missionsOverwrite = {
 		}).dialog('option', 'buttons', {
 			'Zoom to mission': function() {
 				me.zoomToMission(mission);
+				// show map and collapse dialog
+				show('map');
+				$(this).parent().find('.ui-dialog-titlebar-button-collapse').click();
 			},
 			'Close': function() { $(this).dialog('close'); },
 		});
