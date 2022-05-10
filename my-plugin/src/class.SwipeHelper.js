@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Helper class for detecting swipe events.
  * 
  * Note! Override `swipe` function to handle swipe events.
@@ -95,7 +95,37 @@ class SwipeHelper {
 			this.starty = null;
 		}
 	}
+	
+	/**
+	 * Handle capture exceptions.
+	 */
+	shouldCapture(onEdge, event) {
+		// capture event only on specifc edges
+		if (this.edgeCapture instanceof Array && this.edgeCapture.indexOf(onEdge) >= 0) {
+			// don't capture for some target elements
+			let targetElement = event.target.nodeName.toLowerCase();
+			if (this.captureExceptionElements instanceof Array) {
+				// current element
+				if (this.captureExceptionElements.indexOf(targetElement) >= 0) {
+					console.log('[SwipeHelper] touch NOT captured for target: ', targetElement);
+					return false;
+				}
+				// any ancestor
+				if ($(event.target).parents(this.captureExceptionElements.join(',')).length > 0) {
+					console.log('[SwipeHelper] touch NOT captured for target: ', targetElement);
+					return false;
+				}
+				return true;
+			} else {
+				return true;
+			}
+		}
+		return false;
+	}
 
+	/**
+	 * Touch (and swipe) start event.
+	 */
 	handleStart(event) {
 		const touch = event.touches[0];
 		//console.log('touch', touch);
@@ -113,7 +143,8 @@ class SwipeHelper {
 				onEdge = 'bottom';
 			}
 			if (onEdge) {
-				if (this.edgeCapture instanceof Array && this.edgeCapture.indexOf(onEdge) >= 0) {
+				// handle capture exceptions
+				if (this.shouldCapture(onEdge, event)) {
 					event.preventDefault();
 					event.stopImmediatePropagation();
 					console.log('[SwipeHelper] touch captured');
@@ -125,6 +156,9 @@ class SwipeHelper {
 		}
 	}
 
+	/**
+	 * Touch move event (continue swipe).
+	 */
 	handleMove(event) {
 		if (this.startx === null || this.starty === null) {
 			return;
@@ -167,3 +201,4 @@ class SwipeHelper {
 		}
 	}
 }
+// SwipeHelper END
