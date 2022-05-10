@@ -31,6 +31,19 @@ cd my-plugin
 gulp
 ```
 
+Running tasks
+---------------
+
+First of all -- install commandbar for VSC. This will give you a build button.
+
+To run a `watchTask` exported as `watch` do:
+```
+cd my-plugin
+gulp watch
+```
+
+You can run other tasks exported in `gulpfile.js`.
+
 Tips and directory structure
 ----------------------------
 

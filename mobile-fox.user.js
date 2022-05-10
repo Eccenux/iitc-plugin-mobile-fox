@@ -428,6 +428,9 @@ window.plugin.mobileFoxUx.showCheckpointsDialog = function (checkpointTime, cycl
 /**
  * Missions plugin overwrites.
  * 
+ * This is meant to extend the original like so:
+ * $.extend(window.plugin.missions, missionsOverwrite);
+ * 
  * @todo Move this to separate plugin?
  */
 let missionsOverwrite = {
