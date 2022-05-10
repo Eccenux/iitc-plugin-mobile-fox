@@ -13,6 +13,14 @@
 			"priority": 0
 		},
 		{
+			"text": "Gulp tasks",
+			"tooltip": "List of gulp tasks",
+			"color": "lightgreen",
+			"commandType": "palette",
+			"command": "workbench.action.tasks.runTask|gulp tasks",
+			"priority": 0
+		},
+		{
 			"text": "Install modules",
 			"tooltip": "npm install --no-optional",
 			"color": "lightgreen",

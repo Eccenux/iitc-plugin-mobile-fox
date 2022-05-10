@@ -13,6 +13,16 @@
 			"group": "build",
 			"problemMatcher": [],
 		},
+		{
+			"label": "gulp tasks",
+			"type": "shell",
+			"command": "gulp --tasks",
+			"options": {
+				"cwd": "${workspaceFolder}/my-plugin"
+			},
+			"group": "build",
+			"problemMatcher": [],
+		},
 		// safe install for Windows
 		{
 			"label": "modules install perm",

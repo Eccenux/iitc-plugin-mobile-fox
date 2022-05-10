@@ -16,38 +16,44 @@ function lessTask() {
 }
 
 /**
- * Main build task.
- * @param {Function} cb Some callback.
+ * Build user.js.
  */
-function buildTask(cb) {
-	// user.js
-	gulp.src("src/**/*.js")
+function buildMainTask() {
+	return gulp.src("src/**/*.js")
 		.pipe(concat("mobile-fox.user.js"))
 		.pipe(msProject.main()) // add monkeyscript header
 		.pipe(gulp.dest("../"))
 	;
-
-	// meta.js
+}
+/**
+ * Build meta.js.
+ */
+function buildMetaTask() {
 	var stream = source("mobile-fox.meta.js");
 	stream.end('');
-	stream
+	return stream
 		.pipe(msProject.meta()) // add monkeyscript header
 		.pipe(gulp.dest("../"))
 	;
-    
-	cb();
 }
+
+/**
+ * Main build task.
+ */
+var buildTask = gulp.parallel(buildMainTask, buildMetaTask);
 
 /**
  * Watch-build.
  */
 function watchTask() {
 	gulp.watch(['src/less/*.less'], gulp.series(lessTask, buildTask));
-	gulp.watch(['src/*.js'], buildTask);
+	gulp.watch(['src/*.js'], buildMainTask);
 }
 
 // task names
 exports.watch = watchTask;
 exports.less = lessTask;
 exports.build = buildTask;
+exports.buildMain = buildMainTask;
+exports.buildMeta = buildMetaTask;
 exports.default = gulp.series(lessTask, buildTask)
