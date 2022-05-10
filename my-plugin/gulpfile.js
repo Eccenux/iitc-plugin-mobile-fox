@@ -38,7 +38,16 @@ function buildTask(cb) {
 	cb();
 }
 
+/**
+ * Watch-build.
+ */
+function watchTask() {
+	gulp.watch(['src/less/*.less'], gulp.series(lessTask, buildTask));
+	gulp.watch(['src/*.js'], buildTask);
+}
+
 // task names
+exports.watch = watchTask;
 exports.less = lessTask;
 exports.build = buildTask;
 exports.default = gulp.series(lessTask, buildTask)
