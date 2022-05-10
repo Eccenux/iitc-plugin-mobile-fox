@@ -1,37 +1,34 @@
-//
-// Missions notes
-//
+﻿let missionsOverwrite = {
+	showMissionListDialog : function (missions) {
+		console.log('[missionsOverwrite]', 'showMissionListDialog');
 
-if (window.plugin.missions) {
-	window.plugin.mobileFoxUx.createMissionsPane.call(window.plugin.missions);
-	window.plugin.mobileFoxUx.addPane('plugin-missions', 'Missions');
-}
+		let contentElement = this.renderMissionList(missions);
+		this.mobilePaneContainer.appendChild(contentElement);
+	},
 
-class MissionsOverwrite {
-	constructor() {}
+	onPaneChanged : function (pane) {
+		console.log('[missionsOverwrite]', 'onPaneChanged', this);
 
-	showMissionListDialog (missions) {
-		this.container = this.renderMissionList(missions);
-	}
-
-	onPaneChanged (pane) {
 		if(pane == 'plugin-missions') {
 			document.body.appendChild(this.mobilePane);
+			$(this.mobilePaneContainer).empty();
 			this.openTopMissions();
 		} else if(this.mobilePane.parentNode) {
 			this.mobilePane.parentNode.removeChild(this.mobilePane);
 		}
 	
-	}
+	},
+	
+	createMissionsPane : function () {
+		console.log('[missionsOverwrite]', 'createMissionsPane', this);
 
-	createMissionsPane () {
 		this.mobilePane = document.createElement('div');
 		this.mobilePane.className = 'plugin-mission-pane';
 	
-		this.container = this.mobilePane.appendChild(document.createElement('div'));
-		addHook('paneChanged', () => {
-			this.onPaneChanged();
+		this.mobilePaneContainer = document.createElement('div');
+		this.mobilePane.appendChild(this.mobilePaneContainer);
+		addHook('paneChanged', (pane) => {
+			this.onPaneChanged(pane);
 		});
-	}
+	},
 }
-
